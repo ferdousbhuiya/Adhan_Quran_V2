@@ -1,0 +1,9 @@
+{
+  "name": "Noor - Islamic Companion",
+  "short_name": "Noor",
+  "start_url": "/Adhan_Quran_V2/",
+  "display": "standalone",
+  "background_color": "#064e3b",
+  "theme_color": "#064e3b",
+  "icons": []
+}
