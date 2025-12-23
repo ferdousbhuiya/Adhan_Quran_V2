@@ -9,11 +9,13 @@ if (!rootElement) {
 
 // Register service worker early for notifications
 if ('serviceWorker' in navigator) {
+  // Use Vite's base URL so the service worker path and scope are correct after build
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/AzanAndQuran/sw.js', { scope: '/AzanAndQuran/' })
+    const swPath = `${import.meta.env.BASE_URL}sw.js`;
+    const swScope = import.meta.env.BASE_URL || '/';
+    navigator.serviceWorker.register(swPath, { scope: swScope })
       .then(reg => {
         console.log('Service Worker registered successfully:', reg);
-        // Enable periodic sync for prayer times (if supported)
         if ('periodicSync' in reg && 'register' in reg.periodicSync) {
           (reg.periodicSync as any).register('check-prayer-times', { minInterval: 24 * 60 * 60 * 1000 })
             .catch((err: any) => console.log('Periodic sync registration failed:', err));

@@ -50,16 +50,21 @@ self.addEventListener('notificationclick', (event) => {
   event.notification.close();
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
-      // Focus existing window if available
+      // Focus existing window if available (match by scope)
+      const scope = self.registration && self.registration.scope ? self.registration.scope : '/';
       for (let i = 0; i < clientList.length; i++) {
         const client = clientList[i];
-        if (client.url === '/' && 'focus' in client) {
-          return client.focus();
+        try {
+          if (client.url && client.url.indexOf(scope) === 0 && 'focus' in client) {
+            return client.focus();
+          }
+        } catch (e) {
+          // ignore cross-origin access
         }
       }
-      // Otherwise open a new window
+      // Otherwise open a new window at the service worker scope
       if (clients.openWindow) {
-        return clients.openWindow('/AzanAndQuran/');
+        return clients.openWindow(scope);
       }
     })
   );
