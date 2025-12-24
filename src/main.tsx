@@ -1,8 +1,8 @@
-<BrowserRouter basename="/Adhan_Quran_V2">
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./styles.css";
+import { BrowserRouter } from "react-router-dom";
 
 const loader = document.getElementById("app-loader");
 if (loader) {
@@ -13,8 +13,8 @@ if (loader) {
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter basename="/Adhan_Quran_V2">
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
-
-// redeploy
