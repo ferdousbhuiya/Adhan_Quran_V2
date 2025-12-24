@@ -1,3 +1,4 @@
+<BrowserRouter basename="/Adhan_Quran_V2">
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
