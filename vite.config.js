@@ -1,10 +1,7 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: "/Adhan_Quran_V2/",
   plugins: [react()],
-  build: {
-    outDir: "dist"
-  }
-});
+  base: '/Adhan_Quran_V2/',   // <-- THIS IS THE FIX
+})
